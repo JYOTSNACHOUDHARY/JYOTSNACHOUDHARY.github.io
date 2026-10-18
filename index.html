@@ -216,15 +216,84 @@ section.layer { padding-block: clamp(72px, 10vw, 128px); }
 @media (max-width: 960px) { .repo-wrap { grid-template-columns: 1fr; } .repo-wrap > .spacer { display: none; } }
 @media (max-width: 640px) { .repos { grid-template-columns: 1fr; } }
 
-/* Teaching */
-.teach { display: grid; grid-template-columns: 220px repeat(2, minmax(0, 1fr)); gap: 32px; }
-.channel { text-decoration: none; display: grid; gap: 10px; align-content: start; }
-.channel .k { font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite); }
-.channel .t { font-family: var(--f-display); font-style: italic; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; letter-spacing: -0.02em; }
-.channel:hover .t { color: var(--accent); }
-.channel p { margin: 0; color: var(--graphite); max-width: 40ch; }
-.quote { grid-column: 2 / -1; font-family: var(--f-display); font-size: clamp(20px, 2.2vw, 26px); font-style: italic; color: var(--graphite); margin: 24px 0 0; }
-@media (max-width: 860px) { .teach { grid-template-columns: 1fr; } .teach .spacer { display: none; } .quote { grid-column: auto; } }
+/* Notes & experiments: rows that sketch themselves on hover */
+.notes { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+.note-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); }
+.note-list li { border-bottom: 1px solid var(--hair); position: relative; }
+.note-list li::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.note-list li:hover::after, .note-list li:focus-within::after { transform: scaleX(1); }
+.note {
+  display: grid; grid-template-columns: 170px minmax(0, 1fr) 140px 28px; grid-template-rows: auto auto;
+  column-gap: 28px; row-gap: 6px; align-items: center; padding-block: 30px; text-decoration: none;
+}
+.note .k { grid-row: 1 / 3; font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite); }
+.note .t {
+  font-family: var(--f-display); font-style: italic; font-size: clamp(26px, 3vw, 38px); line-height: 1.08; letter-spacing: -0.02em;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1), color .3s;
+}
+.note .d { grid-column: 2; color: var(--graphite); font-size: 15.5px; max-width: 52ch; }
+.note .motif { grid-column: 3; grid-row: 1 / 3; width: 140px; height: 56px; max-width: 100%; overflow: visible; }
+.note .go { grid-column: 4; grid-row: 1 / 3; color: var(--accent); font-size: 20px; transition: transform .35s; }
+.note:hover .t, .note:focus-visible .t { transform: translateX(8px); color: var(--accent); }
+.note:hover .go, .note:focus-visible .go { transform: translate(3px, -3px); }
+
+.motif * { fill: none; stroke: var(--graphite); stroke-width: 1.2; stroke-linecap: round; transition: stroke .3s; vector-effect: non-scaling-stroke; }
+.note:hover .motif *, .note:focus-visible .motif * { stroke: var(--accent); }
+.motif .solid { fill: var(--graphite); stroke: none; transition: fill .3s; }
+.note:hover .motif .solid, .note:focus-visible .motif .solid { fill: var(--accent); }
+.motif .bar, .motif .cell { transform-box: fill-box; }
+.motif .bar { transform-origin: center; }
+.motif .cell { transform-origin: left center; }
+.note:hover .motif .ink, .note:focus-visible .motif .ink { animation: draw 1.5s cubic-bezier(.4,0,.2,1) both; }
+.note:hover .motif .bar, .note:focus-visible .motif .bar { animation: wave .9s ease-in-out infinite alternate; }
+.note:hover .motif .cell, .note:focus-visible .motif .cell { animation: type .5s steps(8, end) both; }
+.motif .bar:nth-child(2n) { animation-delay: -.3s !important; }
+.motif .bar:nth-child(3n) { animation-delay: -.6s !important; }
+.motif .cell:nth-of-type(2) { animation-delay: .35s !important; }
+.motif .cell:nth-of-type(3) { animation-delay: .7s !important; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes wave { from { transform: scaleY(.35); } to { transform: scaleY(1.15); } }
+@keyframes type { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.motif .ink { stroke-dasharray: 1; stroke-dashoffset: 0; }
+
+.quote { font-family: var(--f-display); font-size: clamp(20px, 2.2vw, 26px); font-style: italic; color: var(--graphite); margin: 40px 0 0; }
+
+/* Off the clock: the sentence completes itself like a language model, and can be resampled */
+.offclock { margin-top: 44px; padding: 28px clamp(20px, 3vw, 32px); background: var(--paper-2); border-radius: 4px; display: grid; gap: 14px; }
+.offclock .bar-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.offclock .k { font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.offclock .meta { font-family: var(--f-mono); font-size: 11px; color: var(--graphite); }
+.gen { margin: 0; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.45; min-height: 2.9em; }
+.gen .prompt { color: var(--graphite); }
+.gen .out { color: var(--ink); font-family: var(--f-display); font-style: italic; }
+.gen .caret { display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -0.12em; background: var(--accent); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.regen {
+  appearance: none; justify-self: start; font: 500 13px var(--f-body); color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--ink); border-radius: 999px; padding: 7px 15px; display: inline-flex; gap: 8px; align-items: center;
+  transition: background .2s, color .2s;
+}
+.regen:hover { background: var(--ink); color: var(--paper); }
+.regen .ic { display: inline-block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.regen:hover .ic { transform: rotate(-200deg); }
+.regen[disabled] { opacity: .5; cursor: default; }
+
+@media (max-width: 960px) { .notes { grid-template-columns: 1fr; } .notes > .spacer { display: none; } }
+@media (max-width: 760px) {
+  .note { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto; padding-block: 24px; }
+  .note .k { grid-row: auto; grid-column: 1; }
+  .note .go { grid-row: 1; grid-column: 2; }
+  .note .t, .note .d { grid-column: 1 / -1; }
+  .note .motif { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .note .t, .note-list li::after, .regen .ic { transition: none; }
+  .note:hover .motif *, .note:focus-visible .motif * { animation: none !important; }
+  .gen .caret { animation: none; }
+}
 
 /* Experience */
 .timeline { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
@@ -336,9 +405,6 @@ section.layer { padding-block: clamp(72px, 10vw, 128px); }
 .repo-links a:hover { border-color: var(--accent); }
 @media (prefers-reduced-motion: reduce) { .live::before { animation: none; } }
 
-/* Teaching links: underline draws in */
-.channel .t { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; justify-self: start; }
-.channel:hover .t, .channel:focus-visible .t { background-size: 100% 1px; }
 
 /* Experience: the timeline fills as you read down it */
 .roles::after {
@@ -359,7 +425,7 @@ section.layer { padding-block: clamp(72px, 10vw, 128px); }
 .copy { will-change: transform; transition: background .2s, color .2s, transform .35s cubic-bezier(.2,.7,.2,1); }
 
 @media (prefers-reduced-motion: reduce) {
-  .case::before, .figure .n, .repo::before, .channel .t, .copy, .cursor, .layer-nav .dot, .layer-nav .lbl { transition: none; }
+  .case::before, .figure .n, .repo::before, .copy, .cursor, .layer-nav .dot, .layer-nav .lbl { transition: none; }
   .case:hover .figure .n { transform: none; }
 }
 
@@ -373,7 +439,7 @@ footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; 
     <ul>
       <li class="link"><a href="#work">Work</a></li>
       <li class="link"><a href="#open-source">Open source</a></li>
-      <li class="link"><a href="#teaching">Teaching</a></li>
+      <li class="link"><a href="#notes">Notes</a></li>
       <li class="link"><a href="#experience">Experience</a></li>
       <li class="link"><a href="#contact">Contact</a></li>
       <li><button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
@@ -409,7 +475,7 @@ footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; 
       <div class="prose">
         <p>Eight years of turning models into systems people rely on, mostly where the answers have to be right, private and fast.</p>
         <p>I started in 2018 building forecasting and classification models at Wipro Digital. My work has since followed the field: computer vision for medical X-ray imaging, then retrieval and generation at Siemens Healthineers, and now multi-agent platforms used by hundreds of thousands of professional firms.</p>
-        <p>I care about the unglamorous parts that make AI trustworthy in production: evaluation, observability and latency budgets. Outside work I teach on my YouTube channel, <i>Learn Hidden Layers</i>, and write on Medium.</p>
+        <p>I care about the unglamorous parts that make AI trustworthy in production: evaluation, observability and latency budgets. Outside work I write on Medium and now and then record explainers for my YouTube channel, <i>Learn Hidden Layers</i>.</p>
       </div>
       <dl class="facts">
         <div><dt>Focus</dt><dd>Agentic AI, RAG, LLM evaluation</dd></div>
@@ -520,25 +586,45 @@ footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; 
     </div>
   </section>
 
-  <section class="layer" id="teaching">
+  <section class="layer" id="notes">
     <div class="wrap">
       <div class="layer-head">
         <p class="eyebrow">Hidden layer 3</p>
-        <h2>Teaching &amp; <em>writing</em></h2>
+        <h2>Notes &amp; <em>experiments</em></h2>
       </div>
-      <div class="teach">
+      <div class="notes">
         <div class="spacer"></div>
-        <a class="channel" href="https://www.youtube.com/@LearnHiddenLayers" target="_blank" rel="noopener">
-          <span class="k">YouTube</span>
-          <span class="t">Learn Hidden Layers ↗</span>
-          <p>Practical AI learning guides, with notebooks and resources published on GitHub.</p>
-        </a>
-        <a class="channel" href="https://medium.com/@jyotsna.a.choudhary" target="_blank" rel="noopener">
-          <span class="k">Medium</span>
-          <span class="t">Notes on LLM engineering ↗</span>
-          <p>Essays on RAG, agents and running LLM systems in production.</p>
-        </a>
-        <p class="quote">“Learning in public, one hidden layer at a time.”</p>
+        <div>
+          <ul class="note-list">
+            <li><a class="note" href="https://medium.com/@jyotsna.a.choudhary" target="_blank" rel="noopener">
+              <span class="k">Writing · Medium</span>
+              <span class="t">Notes on LLM engineering</span>
+              <span class="d">Essays on RAG, agents and running LLM systems in production.</span>
+              <svg class="motif" viewBox="0 0 140 56" aria-hidden="true"><path class="ink" pathLength="1" d="M6 40 C 18 8, 32 8, 38 30 S 58 52, 70 28 S 92 4, 104 26 S 124 46, 132 16"/><path class="ink" pathLength="1" d="M60 50 L 128 50"/><circle class="solid" cx="132" cy="16" r="2.4"/></svg>
+              <span class="go">↗</span>
+            </a></li>
+            <li><a class="note" href="https://www.youtube.com/@LearnHiddenLayers" target="_blank" rel="noopener">
+              <span class="k">Video · YouTube</span>
+              <span class="t">Learn Hidden Layers</span>
+              <span class="d">A small library of AI explainers, recorded when an idea deserves a longer walkthrough.</span>
+              <svg class="motif" viewBox="0 0 140 56" aria-hidden="true"><circle cx="18" cy="28" r="14"/><path class="solid" d="M14 21 L 25 28 L 14 35 Z"/><g><rect class="bar" x="44" y="22" width="1" height="12"/><rect class="bar" x="54" y="14" width="1" height="28"/><rect class="bar" x="64" y="8" width="1" height="40"/><rect class="bar" x="74" y="18" width="1" height="20"/><rect class="bar" x="84" y="11" width="1" height="34"/><rect class="bar" x="94" y="20" width="1" height="16"/><rect class="bar" x="104" y="15" width="1" height="26"/><rect class="bar" x="114" y="23" width="1" height="10"/><rect class="bar" x="124" y="19" width="1" height="18"/></g></svg>
+              <span class="go">↗</span>
+            </a></li>
+            <li><a class="note" href="https://github.com/JYOTSNACHOUDHARY/the-hidden-layers-resources" target="_blank" rel="noopener">
+              <span class="k">Notebooks · GitHub</span>
+              <span class="t">Open notebooks</span>
+              <span class="d">The code and guides behind the videos, free to fork and run.</span>
+              <svg class="motif" viewBox="0 0 140 56" aria-hidden="true"><path d="M8 6 L 4 6 L 4 50 L 8 50"/><rect class="cell" x="14" y="9" width="96" height="1"/><rect class="cell" x="14" y="27" width="118" height="1"/><rect class="cell" x="14" y="45" width="64" height="1"/><circle class="solid" cx="122" cy="9.5" r="2.4"/></svg>
+              <span class="go">↗</span>
+            </a></li>
+          </ul>
+          <p class="quote">“Learning in public, one hidden layer at a time.”</p>
+          <div class="offclock">
+            <div class="bar-top"><span class="k">Off the clock</span><span class="meta" id="gen-meta">sample 1 of 5 · temperature 0.8</span></div>
+            <p class="gen" id="gen" aria-live="polite"><span class="prompt">When I’m not building, I’m </span><span class="out" id="gen-out">cooking something new.</span><span class="caret" aria-hidden="true"></span></p>
+            <button class="regen" id="regen" type="button"><span class="ic" aria-hidden="true">↻</span> Regenerate</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -603,7 +689,7 @@ footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; 
     <li><a href="#about"><span class="lbl">Input · About</span><span class="dot"></span></a></li>
     <li><a href="#work"><span class="lbl">Selected work</span><span class="dot"></span></a></li>
     <li><a href="#open-source"><span class="lbl">Open source</span><span class="dot"></span></a></li>
-    <li><a href="#teaching"><span class="lbl">Teaching</span><span class="dot"></span></a></li>
+    <li><a href="#notes"><span class="lbl">Notes &amp; experiments</span><span class="dot"></span></a></li>
     <li><a href="#experience"><span class="lbl">Experience</span><span class="dot"></span></a></li>
     <li><a href="#skills"><span class="lbl">Tools</span><span class="dot"></span></a></li>
     <li><a href="#contact"><span class="lbl">Output · Contact</span><span class="dot"></span></a></li>
@@ -713,6 +799,39 @@ footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; 
     });
     mag.addEventListener('pointerleave', () => { mag.style.transform = ''; });
   }
+
+  // Off the clock: stream a completion token by token, like a language model
+  (() => {
+    const out = document.getElementById('gen-out'), btn = document.getElementById('regen');
+    const meta = document.getElementById('gen-meta'), box = document.getElementById('gen');
+    const samples = [
+      'cooking something new.',
+      'halfway through a book.',
+      'planning the next trip.',
+      'writing up something I just learned.',
+      'cooking, reading or travelling. Usually in that order.'
+    ];
+    let i = 0, busy = false;
+    function stream(text) {
+      if (calm) { out.textContent = text; return; }
+      busy = true; btn.disabled = true; box.setAttribute('aria-busy', 'true');
+      const tokens = text.match(/\S+\s*/g); out.textContent = ''; let k = 0;
+      (function next() {
+        if (k < tokens.length) { out.textContent += tokens[k++]; setTimeout(next, 70 + Math.random() * 130); }
+        else { busy = false; btn.disabled = false; box.removeAttribute('aria-busy'); }
+      })();
+    }
+    btn.addEventListener('click', () => {
+      if (busy) return;
+      i = (i + 1) % samples.length;
+      meta.textContent = `sample ${i + 1} of ${samples.length} · temperature 0.8`;
+      stream(samples[i]);
+    });
+    if (!calm && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { io.disconnect(); setTimeout(() => stream(samples[0]), 400); } }, { threshold: 0.8 });
+      io.observe(box);
+    }
+  })();
 
   // Hero: a hand-drawn neural network with signals passing through its layers
   const canvas = document.getElementById('net');
