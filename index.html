@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ECEEEA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1114" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://jyotsnachoudhary.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jyotsnachoudhary.github.io/">
+<meta property="og:title" content="Jyotsna Choudhary · Senior AI Engineer">
+<meta property="og:description" content="Senior AI Engineer building multi-agent systems, retrieval pipelines and LLM evaluation for healthcare and enterprise.">
+<meta property="og:image" content="https://jyotsnachoudhary.github.io/portrait.jpg">
+<meta name="twitter:card" content="summary">
+<style>
+html { color-scheme: light; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<title>Jyotsna Choudhary · Senior AI Engineer</title>
+<meta name="description" content="Senior AI Engineer building multi-agent systems, retrieval pipelines and LLM evaluation for healthcare and enterprise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column on a cool vellum ground; the page is read as a signal passing
+   through a network, from Input (who) through hidden layers (work) to Output (contact). */
+:root {
+  --paper: #ECEEEA;
+  --paper-2: #E2E5E0;
+  --ink: #15181D;
+  --graphite: #5B6169;
+  --hair: #C6CBC5;
+  --accent: #8E2F45;
+  --accent-soft: rgba(142, 47, 69, 0.10);
+
+  --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --measure: 64ch;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0F1114; --paper-2: #16191D; --ink: #E8E6E0; --graphite: #959BA3;
+    --hair: #2A2F35; --accent: #DB8094; --accent-soft: rgba(219, 128, 148, 0.12);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0F1114; --paper-2: #16191D; --ink: #E8E6E0; --graphite: #959BA3;
+  --hair: #2A2F35; --accent: #DB8094; --accent-soft: rgba(219, 128, 148, 0.12);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--accent); color: var(--paper); }
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+@media (max-width: 520px) {
+  .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 18px; }
+.mark { font-family: var(--f-display); font-style: italic; font-size: 22px; text-decoration: none; letter-spacing: -0.01em; }
+.mark span { color: var(--accent); }
+.nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav ul a { text-decoration: none; font-size: 14px; color: var(--graphite); transition: color .2s; }
+.nav ul a:hover { color: var(--ink); }
+.theme-btn {
+  appearance: none; border: 1px solid var(--hair); background: transparent; color: var(--ink);
+  width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: grid; place-items: center;
+}
+.theme-btn svg { width: 16px; height: 16px; }
+@media (max-width: 760px) { .nav ul li.link { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-block: clamp(72px, 12vw, 148px) clamp(64px, 9vw, 120px); pointer-events: none; }
+.hero .wrap a, .hero .wrap button { pointer-events: auto; }
+.eyebrow {
+  font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--graphite); display: flex; align-items: center; gap: 12px; margin: 0;
+}
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--accent); }
+.hero h1 {
+  font-family: var(--f-display); font-weight: 400; font-optical-sizing: auto;
+  font-size: clamp(56px, 11vw, 148px); line-height: 0.92; letter-spacing: -0.035em;
+  margin: 28px 0 0; max-width: 9ch; text-wrap: balance;
+}
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .lede {
+  font-size: clamp(18px, 2vw, 22px); line-height: 1.5; max-width: 34ch; margin: 36px 0 0; color: var(--ink);
+}
+.hero .lede b { font-weight: 500; }
+.trajectory {
+  margin: 44px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 0;
+  font-family: var(--f-mono); font-size: 12.5px; color: var(--graphite);
+}
+.trajectory li { display: flex; align-items: center; }
+.trajectory li + li::before { content: ""; width: 28px; height: 1px; background: var(--hair); margin: 0 12px; }
+.trajectory li:last-child { color: var(--accent); }
+.portrait {
+  position: absolute; right: max(24px, env(safe-area-inset-right, 0px)); top: 50%;
+  width: clamp(180px, 21vw, 264px); aspect-ratio: 1; max-width: 100%; margin: 0;
+  transform: translateY(-46%);
+}
+.portrait .frame { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: var(--paper-2); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.06); filter: saturate(0.82) contrast(1.02); }
+.portrait::after {
+  content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 1px solid var(--hair);
+}
+.portrait figcaption {
+  position: absolute; left: 50%; bottom: -38px; transform: translateX(-50%); white-space: nowrap;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite);
+}
+@media (max-width: 760px) {
+  .portrait { position: relative; right: auto; top: auto; transform: none; width: 112px; margin: 0 0 36px 10px; }
+  .portrait figcaption { display: none; }
+}
+.hero-in > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+.hero-in > *:nth-child(2) { animation-delay: .08s; }
+.hero-in > *:nth-child(3) { animation-delay: .16s; }
+.hero-in > *:nth-child(4) { animation-delay: .24s; }
+.hero-in > *:nth-child(5) { animation-delay: .32s; }
+@keyframes rise-p { from { opacity: .001; } to { opacity: 1; } }
+.hero-in > .portrait { animation-name: rise-p; animation-duration: 1.4s; }
+@keyframes rise { from { transform: translateY(14px); opacity: .001; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .hero-in > * { animation: none; } }
+
+/* ---------- Sections ---------- */
+section.layer { padding-block: clamp(72px, 10vw, 128px); }
+.layer-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: baseline; margin-bottom: clamp(40px, 6vw, 72px); }
+.layer-head h2 {
+  font-family: var(--f-display); font-weight: 400; font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.02; letter-spacing: -0.025em; margin: 0; text-wrap: balance;
+}
+.layer-head h2 em { font-style: italic; }
+@media (max-width: 760px) { .layer-head { grid-template-columns: 1fr; gap: 14px; } }
+
+/* About */
+.about { display: grid; grid-template-columns: 220px minmax(0, 1fr) 260px; gap: 32px; }
+.about .prose { max-width: var(--measure); }
+.about .prose p { margin: 0 0 1.1em; }
+.about .prose p:first-child { font-family: var(--f-display); font-size: clamp(22px, 2.6vw, 28px); line-height: 1.35; letter-spacing: -0.01em; }
+.facts { margin: 0; display: grid; gap: 18px; align-content: start; font-size: 15px; }
+.facts dt { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); }
+.facts dd { margin: 4px 0 0; }
+@media (max-width: 960px) { .about { grid-template-columns: 1fr; } .about .spacer { display: none; } }
+
+/* Case studies */
+.cases { display: grid; gap: 0; }
+.case {
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px;
+  padding-block: clamp(36px, 5vw, 56px); border-top: 1px solid var(--hair);
+}
+.case:last-child { border-bottom: 1px solid var(--hair); }
+.figure { display: grid; align-content: start; gap: 6px; }
+.figure .n {
+  font-family: var(--f-display); font-weight: 400; font-size: clamp(52px, 6.4vw, 76px); line-height: 0.95;
+  letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: lining-nums;
+}
+.figure .n small { font-size: 0.5em; letter-spacing: 0; }
+.figure .u { font-family: var(--f-mono); font-size: 12px; color: var(--graphite); max-width: 22ch; line-height: 1.45; }
+.case-body { max-width: var(--measure); min-width: 0; }
+.case-meta { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--graphite); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.case-body h3 { font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 2.8vw, 31px); line-height: 1.15; letter-spacing: -0.015em; margin: 12px 0 14px; text-wrap: balance; }
+.case-body p { margin: 0 0 12px; color: var(--ink); }
+.case-body ul { margin: 0 0 14px; padding: 0; list-style: none; display: grid; gap: 8px; }
+.case-body ul li { padding-left: 22px; position: relative; }
+.case-body ul li::before { content: ""; position: absolute; left: 2px; top: 0.72em; width: 8px; height: 1px; background: var(--accent); }
+.stack { font-family: var(--f-mono); font-size: 12px; color: var(--graphite); margin-top: 18px; line-height: 1.8; }
+@media (max-width: 760px) { .case { grid-template-columns: 1fr; gap: 18px; } }
+
+/* Open source */
+.repos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+.repo { background: var(--paper); padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 12px; min-width: 0; text-decoration: none; transition: background .25s; }
+.repo:hover { background: var(--paper-2); }
+.repo .name { font-family: var(--f-mono); font-size: 15px; font-weight: 500; display: flex; justify-content: space-between; gap: 12px; }
+.repo .name .arrow { color: var(--accent); transition: transform .25s; }
+.repo:hover .name .arrow { transform: translate(3px, -3px); }
+.repo h3 { font-family: var(--f-display); font-weight: 400; font-size: 24px; line-height: 1.2; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.repo p { margin: 0; font-size: 15px; color: var(--graphite); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 8px; }
+.tags span { font-family: var(--f-mono); font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+.repo-wrap { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+@media (max-width: 960px) { .repo-wrap { grid-template-columns: 1fr; } .repo-wrap > .spacer { display: none; } }
+@media (max-width: 640px) { .repos { grid-template-columns: 1fr; } }
+
+/* Teaching */
+.teach { display: grid; grid-template-columns: 220px repeat(2, minmax(0, 1fr)); gap: 32px; }
+.channel { text-decoration: none; display: grid; gap: 10px; align-content: start; }
+.channel .k { font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite); }
+.channel .t { font-family: var(--f-display); font-style: italic; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; letter-spacing: -0.02em; }
+.channel:hover .t { color: var(--accent); }
+.channel p { margin: 0; color: var(--graphite); max-width: 40ch; }
+.quote { grid-column: 2 / -1; font-family: var(--f-display); font-size: clamp(20px, 2.2vw, 26px); font-style: italic; color: var(--graphite); margin: 24px 0 0; }
+@media (max-width: 860px) { .teach { grid-template-columns: 1fr; } .teach .spacer { display: none; } .quote { grid-column: auto; } }
+
+/* Experience */
+.timeline { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; }
+.roles { list-style: none; margin: 0; padding: 0; position: relative; }
+.roles::before { content: ""; position: absolute; left: 4px; top: 10px; bottom: 10px; width: 1px; background: var(--hair); }
+.roles li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding: 0 0 30px 32px; position: relative; }
+.roles li::before { content: ""; position: absolute; left: 0; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--graphite); }
+.roles li:first-child::before { border-color: var(--accent); background: var(--accent); }
+.roles .when { font-family: var(--f-mono); font-size: 12.5px; color: var(--graphite); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.roles .what b { font-weight: 600; }
+.roles .what span { display: block; color: var(--graphite); font-size: 15px; }
+@media (max-width: 760px) { .timeline { grid-template-columns: 1fr; } .timeline .spacer { display: none; } .roles li { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: 220px repeat(3, minmax(0, 1fr)); gap: 40px 32px; }
+.skills .spacer { grid-row: span 2; }
+.skill h4 { font-family: var(--f-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--graphite); font-weight: 400; margin: 0 0 12px; }
+.skill p { margin: 0; font-size: 15.5px; line-height: 1.75; }
+@media (max-width: 960px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } .skills .spacer { display: none; } }
+@media (max-width: 560px) { .skills { grid-template-columns: 1fr; } }
+
+/* Contact */
+.contact { padding-block: clamp(96px, 14vw, 176px) clamp(48px, 6vw, 72px); }
+.contact h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(44px, 8vw, 104px); line-height: 0.98; letter-spacing: -0.035em; margin: 22px 0 0; max-width: 12ch; text-wrap: balance; }
+.contact h2 em { color: var(--accent); }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 44px; }
+.email { font-family: var(--f-mono); font-size: clamp(15px, 2vw, 20px); user-select: all; word-break: break-all; }
+.copy {
+  appearance: none; font: 500 13px var(--f-body); color: var(--ink); background: transparent;
+  border: 1px solid var(--ink); border-radius: 999px; padding: 8px 16px; cursor: pointer; transition: background .2s, color .2s;
+}
+.copy:hover { background: var(--ink); color: var(--paper); }
+.links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 36px; list-style: none; padding: 0; }
+.links a { text-decoration: none; border-bottom: 1px solid var(--hair); padding-bottom: 2px; transition: border-color .2s; }
+.links a:hover { border-color: var(--accent); }
+/* ---------- Interaction layer ---------- */
+
+/* Layer navigator: a vertical mini-network that tracks the section you are in */
+.layer-nav {
+  position: fixed; z-index: 9; top: 50%; transform: translateY(-50%);
+  right: calc(max(16px, env(safe-area-inset-right, 0px)) + 6px);
+  display: none;
+}
+.layer-nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; position: relative; }
+.layer-nav ol::before, .layer-nav ol::after {
+  content: ""; position: absolute; right: 4px; top: 5px; bottom: 5px; width: 1px; background: var(--hair);
+}
+.layer-nav ol::after { background: var(--accent); transform-origin: top; transform: scaleY(var(--progress, 0)); }
+.layer-nav a { display: flex; align-items: center; justify-content: flex-end; gap: 12px; text-decoration: none; position: relative; z-index: 1; }
+.layer-nav .dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--graphite); background: var(--paper); transition: transform .3s, background .3s, border-color .3s; }
+.layer-nav .lbl {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; color: var(--graphite);
+  opacity: 0; transform: translateX(6px); transition: opacity .25s, transform .25s; white-space: nowrap;
+}
+.layer-nav a:hover .lbl, .layer-nav a:focus-visible .lbl { opacity: 1; transform: none; }
+@media (min-width: 1480px) { .layer-nav a.on .lbl { opacity: 1; transform: none; } }
+.layer-nav a.on .lbl { color: var(--ink); }
+.layer-nav a.passed .dot { border-color: var(--accent); }
+.layer-nav a.on .dot { background: var(--accent); border-color: var(--accent); transform: scale(1.35); }
+@media (min-width: 1240px) { .layer-nav { display: block; } }
+
+/* Cursor ring for precise pointers */
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 20; pointer-events: none;
+  width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%;
+  border: 1px solid var(--ink); opacity: 0;
+  transition: width .3s cubic-bezier(.2,.7,.2,1), height .3s cubic-bezier(.2,.7,.2,1), margin .3s cubic-bezier(.2,.7,.2,1), border-color .3s, background .3s, opacity .3s;
+}
+.cursor.live { opacity: .55; }
+.cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; border-color: var(--accent); background: var(--accent-soft); opacity: 1; }
+.cursor.down { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+
+/* Case studies: an accent line draws across on hover, the figure leans into italic */
+.case { position: relative; }
+.case::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.case:hover::before { transform: scaleX(1); }
+.figure .n { transition: transform .5s cubic-bezier(.2,.7,.2,1); transform-origin: left bottom; }
+.case:hover .figure .n { transform: translateX(6px); }
+.figure .num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* Repos: a soft light follows the pointer */
+.repo { position: relative; overflow: hidden; }
+.repo::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--accent-soft), transparent 62%);
+}
+.repo:hover::before { opacity: 1; }
+.repo > * { position: relative; }
+
+/* A card with a live demo: the whole card opens the demo, and the code link sits above it */
+.repo.has-demo > h3 { position: static; }
+.repo .stretch { text-decoration: none; }
+.repo .stretch::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.repo .stretch:focus-visible { outline: none; }
+.repo.has-demo:has(.stretch:focus-visible) { outline: 2px solid var(--accent); outline-offset: -2px; }
+.live {
+  display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; vertical-align: 2px;
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid currentColor; border-radius: 999px; padding: 2px 8px 2px 7px;
+}
+.live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: beat 2.2s ease-in-out infinite; }
+@keyframes beat { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+.repo-links { z-index: 2; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; }
+.repo-links a { text-decoration: none; border-bottom: 1px solid var(--hair); padding-bottom: 1px; transition: border-color .2s, color .2s; }
+.repo-links a:first-child { color: var(--accent); }
+.repo-links a:hover { border-color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .live::before { animation: none; } }
+
+/* Teaching links: underline draws in */
+.channel .t { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat; transition: background-size .5s cubic-bezier(.2,.7,.2,1), color .3s; justify-self: start; }
+.channel:hover .t, .channel:focus-visible .t { background-size: 100% 1px; }
+
+/* Experience: the timeline fills as you read down it */
+.roles::after {
+  content: ""; position: absolute; left: 4px; top: 10px; bottom: 10px; width: 1px; background: var(--accent);
+  transform-origin: top; transform: scaleY(var(--fill, 0));
+}
+.roles li { transition: opacity .3s; }
+.roles:hover li { opacity: .45; }
+.roles:hover li:hover { opacity: 1; }
+
+/* Skills: hovering a group quiets the others */
+.skill { transition: opacity .3s; }
+.skills:hover .skill { opacity: .4; }
+.skills:hover .skill:hover { opacity: 1; }
+.skill:hover h4 { color: var(--accent); }
+
+/* Contact button is magnetic */
+.copy { will-change: transform; transition: background .2s, color .2s, transform .35s cubic-bezier(.2,.7,.2,1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .case::before, .figure .n, .repo::before, .channel .t, .copy, .cursor, .layer-nav .dot, .layer-nav .lbl { transition: none; }
+  .case:hover .figure .n { transform: none; }
+}
+
+footer { padding-block: 28px 40px; font-family: var(--f-mono); font-size: 12px; color: var(--graphite); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--hair); }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top">J<span>.</span>C</a>
+    <ul>
+      <li class="link"><a href="#work">Work</a></li>
+      <li class="link"><a href="#open-source">Open source</a></li>
+      <li class="link"><a href="#teaching">Teaching</a></li>
+      <li class="link"><a href="#experience">Experience</a></li>
+      <li class="link"><a href="#contact">Contact</a></li>
+      <li><button class="theme-btn" id="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 0 0 0 12z" fill="currentColor"/></svg>
+      </button></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <figure class="portrait" id="portrait">
+      <div class="frame"><img src="portrait.jpg" alt="Portrait of Jyotsna Choudhary" width="447" height="447"></div>
+      <figcaption>Output layer</figcaption>
+    </figure>
+    <p class="eyebrow">Senior AI Engineer &middot; Bengaluru</p>
+    <h1>Jyotsna <em>Choudhary</em></h1>
+    <p class="lede">I build production AI systems: <b>multi-agent platforms</b>, <b>retrieval pipelines</b>, and the evaluation that keeps them honest.</p>
+    <ol class="trajectory" aria-label="Career trajectory">
+      <li>2018 · Machine learning</li>
+      <li>Computer vision</li>
+      <li>RAG</li>
+      <li>Multi-agent AI · now</li>
+    </ol>
+  </div>
+</header>
+
+<main>
+  <section class="layer" id="about">
+    <div class="wrap about">
+      <p class="eyebrow">Input</p>
+      <div class="prose">
+        <p>Eight years of turning models into systems people rely on, mostly where the answers have to be right, private and fast.</p>
+        <p>I started in 2018 building forecasting and classification models at Wipro Digital. My work has since followed the field: computer vision for medical X-ray imaging, then retrieval and generation at Siemens Healthineers, and now multi-agent platforms used by hundreds of thousands of professional firms.</p>
+        <p>I care about the unglamorous parts that make AI trustworthy in production: evaluation, observability and latency budgets. Outside work I teach on my YouTube channel, <i>Learn Hidden Layers</i>, and write on Medium.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Focus</dt><dd>Agentic AI, RAG, LLM evaluation</dd></div>
+        <div><dt>Domains</dt><dd>Healthcare, tax &amp; accounting, SaaS</dd></div>
+        <div><dt>Based in</dt><dd>Bengaluru, India</dd></div>
+        <div><dt>Education</dt><dd>B.Tech, Electrical &amp; Electronics, Manipal University</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="layer" id="work">
+    <div class="wrap">
+      <div class="layer-head">
+        <p class="eyebrow">Hidden layer 1</p>
+        <h2>Selected <em>work</em></h2>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <div class="figure"><span class="n"><span class="num" data-to="210">210</span>k<small>+</small></span><span class="u">tax &amp; accounting firms served, including the Big Four</span></div>
+          <div class="case-body">
+            <div class="case-meta"><span>Wolters Kluwer · via Andela</span><span>2026 – now</span></div>
+            <h3>AVA, a multi-agent assistant for knowledge discovery</h3>
+            <ul>
+              <li>Leading the North American adaptation of agentic workflows and a context-aware RAG pipeline across 200+ products.</li>
+              <li>Moved agent behaviour and intent-context mappings into a five-level configuration layer, so agents update at runtime without redeploying workflows.</li>
+              <li>Resolved 25+ UAT issues ahead of the European release, and built an agentic RAG prototype benchmarked with DeepEval.</li>
+            </ul>
+            <div class="stack">n8n · LLMs · Valkey · DynamoDB · DeepEval · Docker</div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="figure"><span class="n"><span class="num" data-to="50">50</span><small>%</small></span><span class="u">lower translation &amp; maintenance cost for medical content</span></div>
+          <div class="case-body">
+            <div class="case-meta"><span>Siemens Healthineers</span><span>2023 – 2025</span></div>
+            <h3>Retrieval and validation for regulated medical authoring</h3>
+            <ul>
+              <li>Designed a multi-step LangGraph RAG and validation workflow for DITA XML content, cutting content creation time by 30%.</li>
+              <li>Built semantic search for service and product documentation with 40% better relevance than the legacy system.</li>
+              <li>Mentored engineers adopting GenAI across the enterprise platform.</li>
+            </ul>
+            <div class="stack">LangGraph · LangChain · Azure AI Search · LLM evaluation · Fine-tuning</div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="figure"><span class="n">&lt;<span class="num" data-to="30">30</span><small>ms</small></span><span class="u">PII/PHI detection for healthcare voice AI</span></div>
+          <div class="case-body">
+            <div class="case-meta"><span>Birdeye</span><span>2025 – 2026</span></div>
+            <h3>Privacy at conversational speed, and an email copilot</h3>
+            <ul>
+              <li>Built a PII/PHI detection pipeline with Presidio and transformer models fast enough to sit inside live voice calls.</li>
+              <li>Shipped a multi-agent copilot for marketing templates with Langfuse tracing, saving 10+ hours per template.</li>
+            </ul>
+            <div class="stack">LangGraph · FastAPI · Presidio · BERT · spaCy · Kafka · Langfuse</div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="figure"><span class="n"><span class="num" data-to="92">92</span><small>%</small></span><span class="u">mAP on anatomical landmarks, at under 30 ms</span></div>
+          <div class="case-body">
+            <div class="case-meta"><span>GE Healthcare · via Capgemini</span><span>2022 – 2023</span></div>
+            <h3>Landmark detection in X-ray imaging</h3>
+            <p>Fine-tuned and deployed a pose-detection model that locates anatomical landmarks on a platform serving more than a billion patients a year.</p>
+            <div class="stack">PyTorch · Computer vision · Docker · AWS</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="layer" id="open-source">
+    <div class="wrap">
+      <div class="layer-head">
+        <p class="eyebrow">Hidden layer 2</p>
+        <h2>Open <em>source</em></h2>
+      </div>
+      <div class="repo-wrap">
+        <div class="spacer"></div>
+        <div class="repos">
+          <a class="repo" href="https://github.com/JYOTSNACHOUDHARY/startupIdeaGenerator" target="_blank" rel="noopener">
+            <span class="name">startupIdeaGenerator <span class="arrow">↗</span></span>
+            <h3>Ideas, checked against the market</h3>
+            <p>An LLM workflow that generates startup ideas for a domain and validates each one with market-research tools.</p>
+            <div class="tags"><span>Agentic workflow</span><span>Tool use</span><span>Python</span></div>
+          </a>
+          <div class="repo has-demo">
+            <span class="name"><span>CodeWise <span class="live">Live demo</span></span> <span class="arrow">↗</span></span>
+            <h3><a class="stretch" href="https://huggingface.co/spaces/jyotsnaa/CodeWise" target="_blank" rel="noopener">Conversations with your codebase</a></h3>
+            <p>A coding assistant that indexes a repository and answers questions about it with context-aware retrieval.</p>
+            <div class="tags"><span>RAG</span><span>LLMs</span><span>Python</span></div>
+            <div class="repo-links">
+              <a href="https://huggingface.co/spaces/jyotsnaa/CodeWise" target="_blank" rel="noopener">Try it on Hugging Face ↗</a>
+              <a href="https://github.com/JYOTSNACHOUDHARY/CodeWise" target="_blank" rel="noopener">Code on GitHub ↗</a>
+            </div>
+          </div>
+          <a class="repo" href="https://github.com/JYOTSNACHOUDHARY/agent-regression-tester" target="_blank" rel="noopener">
+            <span class="name">agent-regression-tester <span class="arrow">↗</span></span>
+            <h3>Regression tests for LLM agents</h3>
+            <p>Records real agent runs, replays them after prompt, model or tool changes, and flags regressions on pull requests with deterministic checks and an evidence-grounded LLM judge.</p>
+            <div class="tags"><span>LangGraph</span><span>LLM-as-judge</span><span>GitHub Actions</span></div>
+          </a>
+          <a class="repo" href="https://github.com/JYOTSNACHOUDHARY/ai-job-search-agent" target="_blank" rel="noopener">
+            <span class="name">ai-job-search-agent <span class="arrow">↗</span></span>
+            <h3>A job search agent for Europe</h3>
+            <p>Searches 10 sources and about 100 career pages daily, then ranks roles by CV fit and the likelihood of visa sponsorship.</p>
+            <div class="tags"><span>Agents</span><span>OpenAI</span><span>Streamlit</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layer" id="teaching">
+    <div class="wrap">
+      <div class="layer-head">
+        <p class="eyebrow">Hidden layer 3</p>
+        <h2>Teaching &amp; <em>writing</em></h2>
+      </div>
+      <div class="teach">
+        <div class="spacer"></div>
+        <a class="channel" href="https://www.youtube.com/@LearnHiddenLayers" target="_blank" rel="noopener">
+          <span class="k">YouTube</span>
+          <span class="t">Learn Hidden Layers ↗</span>
+          <p>Practical AI learning guides, with notebooks and resources published on GitHub.</p>
+        </a>
+        <a class="channel" href="https://medium.com/@jyotsna.a.choudhary" target="_blank" rel="noopener">
+          <span class="k">Medium</span>
+          <span class="t">Notes on LLM engineering ↗</span>
+          <p>Essays on RAG, agents and running LLM systems in production.</p>
+        </a>
+        <p class="quote">“Learning in public, one hidden layer at a time.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="layer" id="experience">
+    <div class="wrap">
+      <div class="layer-head">
+        <p class="eyebrow">Hidden layer 4</p>
+        <h2>Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="spacer"></div>
+        <ol class="roles" id="roles">
+          <li><span class="when">08/2026 – now</span><span class="what"><b>Senior AI Engineer</b>, Andela<span>Client: Wolters Kluwer</span></span></li>
+          <li><span class="when">12/2025 – 06/2026</span><span class="what"><b>Senior AI Engineer</b>, Birdeye<span>Gurugram</span></span></li>
+          <li><span class="when">10/2023 – 10/2025</span><span class="what"><b>Senior AI Engineer</b>, Siemens Healthineers<span>Bengaluru</span></span></li>
+          <li><span class="when">01/2022 – 09/2023</span><span class="what"><b>Data Scientist</b>, Capgemini Engineering<span>Client: GE Healthcare</span></span></li>
+          <li><span class="when">07/2018 – 01/2022</span><span class="what"><b>Data Scientist</b>, Wipro Digital<span>Data Science Center of Excellence</span></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="layer" id="skills">
+    <div class="wrap">
+      <div class="layer-head">
+        <p class="eyebrow">Hidden layer 5</p>
+        <h2>Tools of the <em>trade</em></h2>
+      </div>
+      <div class="skills">
+        <div class="spacer"></div>
+        <div class="skill"><h4>Agents &amp; LLMs</h4><p>LangGraph, LangChain, n8n, prompt engineering, fine-tuning, Hugging Face, Ollama</p></div>
+        <div class="skill"><h4>Retrieval</h4><p>RAG and agentic RAG, embeddings, FAISS, ChromaDB, Azure AI Search, Neo4j knowledge graphs</p></div>
+        <div class="skill"><h4>Evaluation &amp; ops</h4><p>DeepEval, Langfuse, LLM-as-judge, MLOps, Docker, Azure DevOps, Jenkins</p></div>
+        <div class="skill"><h4>Machine learning</h4><p>PyTorch, TensorFlow, scikit-learn, computer vision, NLP, reinforcement learning</p></div>
+        <div class="skill"><h4>Engineering</h4><p>Python, FastAPI, Flask, Kafka, distributed systems, Azure, AWS</p></div>
+        <div class="skill"><h4>Data</h4><p>SQL, MongoDB, DynamoDB, Valkey, statistics, data analysis</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">Output</p>
+      <h2>Let’s build something that <em>ships.</em></h2>
+      <div class="email-row">
+        <span class="email" id="email">jyotsna.a.choudhary@gmail.com</span>
+        <button class="copy" id="copy-email" type="button">Copy email</button>
+      </div>
+      <ul class="links">
+        <li><a href="https://www.linkedin.com/in/jyotsna-c/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://github.com/JYOTSNACHOUDHARY" target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href="https://medium.com/@jyotsna.a.choudhary" target="_blank" rel="noopener">Medium ↗</a></li>
+        <li><a href="https://www.youtube.com/@LearnHiddenLayers" target="_blank" rel="noopener">YouTube ↗</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<nav class="layer-nav" aria-label="Sections">
+  <ol>
+    <li><a href="#about"><span class="lbl">Input · About</span><span class="dot"></span></a></li>
+    <li><a href="#work"><span class="lbl">Selected work</span><span class="dot"></span></a></li>
+    <li><a href="#open-source"><span class="lbl">Open source</span><span class="dot"></span></a></li>
+    <li><a href="#teaching"><span class="lbl">Teaching</span><span class="dot"></span></a></li>
+    <li><a href="#experience"><span class="lbl">Experience</span><span class="dot"></span></a></li>
+    <li><a href="#skills"><span class="lbl">Tools</span><span class="dot"></span></a></li>
+    <li><a href="#contact"><span class="lbl">Output · Contact</span><span class="dot"></span></a></li>
+  </ol>
+</nav>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Jyotsna Choudhary</span>
+    <span>Certified: LangChain · Udacity ML Nanodegree</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const root = document.documentElement;
+
+  // Theme toggle (remembered per viewer)
+  try { const t = localStorage.getItem('jc-theme'); if (t) root.dataset.theme = t; } catch (e) {}
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('jc-theme', root.dataset.theme); } catch (e) {}
+    readColors();
+  });
+
+  // Copy email
+  const copyBtn = document.getElementById('copy-email');
+  copyBtn.addEventListener('click', () => {
+    const text = document.getElementById('email').textContent.trim();
+    const done = () => { copyBtn.textContent = 'Copied'; setTimeout(() => copyBtn.textContent = 'Copy email', 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); copyBtn.textContent = 'Selected, press ⌘C'; };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  // Layer navigator + timeline fill, driven by scroll position
+  const navLinks = [...document.querySelectorAll('.layer-nav a')];
+  const navList = document.querySelector('.layer-nav ol');
+  const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+  const roles = document.getElementById('roles');
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    const mid = innerHeight * 0.45;
+    let active = -1;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= mid) active = i; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) active = sections.length - 1;
+    navLinks.forEach((a, i) => { a.classList.toggle('on', i === active); a.classList.toggle('passed', i < active); });
+    navList.style.setProperty('--progress', active < 0 ? 0 : active / (sections.length - 1));
+    const r = roles.getBoundingClientRect();
+    roles.style.setProperty('--fill', Math.min(1, Math.max(0, (innerHeight * 0.7 - r.top) / r.height)).toFixed(3));
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+
+  // Case-study figures count up the first time they come into view
+  const nums = document.querySelectorAll('.figure .num');
+  if (!calm && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      io.unobserve(en.target);
+      const el = en.target, to = +el.dataset.to, t0 = performance.now(), dur = 1400;
+      const step = now => {
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = Math.round(to * e);
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }), { threshold: 0.6 });
+    nums.forEach(n => io.observe(n));
+  }
+
+  // Repo cards: light follows the pointer
+  document.querySelectorAll('.repo').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  if (finePointer && !calm) {
+    // Cursor ring that eases after the pointer and opens over anything clickable
+    const cur = document.getElementById('cursor');
+    let tx = -100, ty = -100, cx = -100, cy = -100;
+    addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; cur.classList.add('live'); }, { passive: true });
+    document.addEventListener('pointerleave', () => cur.classList.remove('live'));
+    addEventListener('pointerdown', () => cur.classList.add('down'));
+    addEventListener('pointerup', () => cur.classList.remove('down'));
+    document.addEventListener('pointerover', e => cur.classList.toggle('big', !!e.target.closest('a, button')));
+    (function follow() {
+      cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
+      cur.style.transform = `translate(${cx}px, ${cy}px)`;
+      requestAnimationFrame(follow);
+    })();
+
+    // Magnetic copy button
+    const mag = document.getElementById('copy-email');
+    mag.addEventListener('pointermove', e => {
+      const r = mag.getBoundingClientRect();
+      mag.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.25}px, ${(e.clientY - r.top - r.height / 2) * 0.35}px)`;
+    });
+    mag.addEventListener('pointerleave', () => { mag.style.transform = ''; });
+  }
+
+  // Hero: a hand-drawn neural network with signals passing through its layers
+  const canvas = document.getElementById('net');
+  const ctx = canvas.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, dpr = 1, nodes = [], layers = [], edges = [], pulses = [];
+  let ink = '#15181D', accent = '#8E2F45';
+  const mouse = { x: -9999, y: -9999 };
+  const shape = [3, 6, 8, 8, 5, 1];   // the single output node is the portrait
+  const portrait = document.getElementById('portrait');
+  let photo = { x: 0, y: 0, r: 0 };
+
+  function readColors() {
+    const cs = getComputedStyle(root);
+    ink = cs.getPropertyValue('--ink').trim() || ink;
+    accent = cs.getPropertyValue('--accent').trim() || accent;
+    if (reduce) draw(0);
+  }
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
+
+  function rgba(hex, a) {
+    const h = hex.replace('#', '');
+    const n = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16);
+    return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`;
+  }
+
+  function build() {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const narrow = W < 760;
+    const pr = portrait.querySelector('.frame').getBoundingClientRect();
+    photo = { x: pr.left - r.left + pr.width / 2, y: pr.top - r.top + pr.height / 2, r: pr.width / 2 };
+    const x0 = narrow ? W * 0.22 : W * 0.42, x1 = photo.x;
+    const y0 = H * 0.12, y1 = H * 0.88;
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    nodes = []; layers = []; edges = [];
+    shape.forEach((count, li) => {
+      const ids = [];
+      if (li === shape.length - 1) {
+        ids.push(nodes.length);
+        nodes.push({ x: photo.x, y: photo.y, ph: 0, r: photo.r, glow: 0, photo: true });
+        layers.push(ids);
+        return;
+      }
+      // on phones the network fans out to the right of the portrait instead of leading into it
+      const x = narrow ? photo.x + (W * 0.95 - photo.x) * ((shape.length - 1 - li) / (shape.length - 1)) * 0.9 + 20
+                       : x0 + (x1 - x0) * (li / (shape.length - 1));
+      for (let i = 0; i < count; i++) {
+        const y = y0 + (y1 - y0) * ((i + 0.5) / count) + (rnd() - 0.5) * 18;
+        ids.push(nodes.length);
+        nodes.push({ x: x + (rnd() - 0.5) * 22, y, ph: rnd() * Math.PI * 2, r: 2.2 + rnd() * 1.6, glow: 0 });
+      }
+      layers.push(ids);
+    });
+    for (let l = 0; l < layers.length - 1; l++)
+      for (const a of layers[l]) for (const b of layers[l + 1]) edges.push({ a, b, heat: 0, w: rnd() });
+  }
+
+  function pos(n, t) {
+    if (n.photo) return [n.x, n.y];
+    const dx = Math.sin(t * 0.0004 + n.ph) * 3, dy = Math.cos(t * 0.0003 + n.ph * 1.3) * 3;
+    let x = n.x + dx, y = n.y + dy;
+    const mx = x - mouse.x, my = y - mouse.y, d = Math.hypot(mx, my);
+    if (d < 140) { const f = (1 - d / 140) * 14; x += mx / d * f; y += my / d * f; n.glow = Math.max(n.glow, 1 - d / 140); }
+    return [x, y];
+  }
+
+  function spawnPulse() {
+    // a signal walks one path from the input layer to the output layer
+    const path = layers.map(ids => ids[Math.floor(Math.random() * ids.length)]);
+    pulses.push({ path, seg: 0, p: 0, speed: 0.012 + Math.random() * 0.01 });
+  }
+
+  let reveal = reduce ? 1 : 0, last = 0, nextPulse = 0;
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    const P = nodes.map(n => pos(n, reduce ? 0 : t));
+    const narrow = W < 760, base = narrow ? 0.05 : 0.09;
+
+    for (let i = 0; i < edges.length; i++) {
+      const e = edges[i];
+      const rv = Math.min(1, Math.max(0, reveal * 1.6 - (i / edges.length) * 0.6));
+      if (rv <= 0) continue;
+      const [ax, ay] = P[e.a], [bx, by] = P[e.b];
+      ctx.strokeStyle = rgba(ink, base * (0.5 + e.w * 0.7) + e.heat * 0.0);
+      ctx.lineWidth = 0.6;
+      ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + (bx - ax) * rv, ay + (by - ay) * rv); ctx.stroke();
+      if (e.heat > 0.01) {
+        ctx.strokeStyle = rgba(accent, e.heat * (narrow ? 0.35 : 0.6));
+        ctx.lineWidth = 1.1;
+        ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+        if (!reduce) e.heat *= 0.975;
+      }
+    }
+
+    nodes.forEach((n, i) => {
+      const [x, y] = P[i];
+      if (n.photo) {
+        // when a signal arrives, a ring breathes out from the portrait
+        if (n.glow > 0.02) {
+          ctx.strokeStyle = rgba(accent, n.glow * 0.7); ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.arc(x, y, n.r + 10 + (1 - n.glow) * 22, 0, Math.PI * 2); ctx.stroke();
+          n.glow *= 0.965;
+        }
+        return;
+      }
+      const a = Math.min(1, reveal * 2);
+      ctx.fillStyle = rgba(ink, (narrow ? 0.25 : 0.55) * a);
+      ctx.beginPath(); ctx.arc(x, y, n.r, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = rgba(ink, 0.18 * a); ctx.lineWidth = 0.7;
+      ctx.beginPath(); ctx.arc(x, y, n.r + 5, 0, Math.PI * 2); ctx.stroke();
+      if (n.glow > 0.02) {
+        ctx.strokeStyle = rgba(accent, n.glow * 0.8); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(x, y, n.r + 9 + (1 - n.glow) * 6, 0, Math.PI * 2); ctx.stroke();
+        n.glow *= 0.94;
+      }
+    });
+
+    pulses.forEach(p => {
+      const a = p.path[p.seg], b = p.path[p.seg + 1];
+      const [ax, ay] = P[a], [bx, by] = P[b];
+      const x = ax + (bx - ax) * p.p, y = ay + (by - ay) * p.p;
+      ctx.fillStyle = accent;
+      ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI * 2); ctx.fill();
+      const e = edges.find(e => e.a === a && e.b === b); if (e) e.heat = 1;
+      p.p += p.speed;
+      if (p.p >= 1) { p.p = 0; p.seg++; nodes[b].glow = 1; }
+    });
+    pulses = pulses.filter(p => p.seg < p.path.length - 1);
+  }
+
+  function loop(t) {
+    if (reveal < 1) reveal = Math.min(1, reveal + (t - (last || t)) / 1800);
+    last = t;
+    if (t > nextPulse && reveal >= 1) { spawnPulse(); nextPulse = t + 900 + Math.random() * 1400; }
+    draw(t);
+    requestAnimationFrame(loop);
+  }
+
+  addEventListener('resize', () => { build(); if (reduce) draw(0); });
+  canvas.parentElement.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  canvas.parentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+
+  build(); readColors();
+  if (reduce) {
+    // static frame with one illuminated path
+    const path = layers.map(ids => ids[Math.floor(ids.length / 2)]);
+    for (let i = 0; i < path.length - 1; i++) { const e = edges.find(e => e.a === path[i] && e.b === path[i + 1]); if (e) e.heat = 0.8; }
+    draw(0);
+  } else requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
